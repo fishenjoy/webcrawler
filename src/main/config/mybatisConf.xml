@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 引用db.properties配置文件 -->
+    <properties resource="db.properties"></properties>
+    <!--
+             development : 开发模式
+            work : 工作模式
+        -->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC" />
             <!-- 配置数据库连接信息 -->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/niuza?autoReconnect=true&amp;useSSL=false&amp;characterEncoding=utf8&amp;useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
-                <property name="username" value="root" />
-                <property name="password" value="" />
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${name}" />
+                <property name="password" value="${password}" />
 
             </dataSource>
         </environment>
     </environments>
 
+
+
     <mappers>
+        <!--注册 -->
         <mapper resource="mapping/niuzaMapper.xml"></mapper>
+
+        <mapper class="mapping.NiuZaMapperI"></mapper>
     </mappers>
 
 </configuration>
